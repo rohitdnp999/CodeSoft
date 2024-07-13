@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Board</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            height: 8vh;
+            background-color: #150937;
+            color: white;
+            text-align: center;
+           padding: 20px 20px 0px 25px;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        h1{
+            margin: auto;
+        }
+       
+        .login{
+            height: 5vh;
+            width: 8vw;
+            background-color: red;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 0px 15px 0px 0px;
+            cursor: pointer;
+            &:hover{
+                box-shadow: 5px 5px 10px red;
+                transform: scale(1.1);
+            }
+        }
+        .signup{
+            cursor: pointer;
+            height: 5vh;
+            width: 8vw;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            font-weight: 500;
+
+            &:hover{
+                box-shadow: 5px 5px 10px rgb(232, 220, 220);
+                transform: scale(1.1);
+            }
+        }
+        footer {
+            height: 7.8vh;
+            background-color: #150937;
+            color: white;
+            text-align: center;
+            font-size: 1.5rem;
+            display: grid;
+            place-items: center;
+        }
+        nav {
+            width: 100vw;
+            display: flex;
+            justify-content: space-around;
+            background-color: #e11515;
+            font-size: 1.5rem;
+            margin: 0px -24px;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            height: 150vh;
+           width: 100%;
+            background:rgb(69, 12, 122); 
+            color: aliceblue;
+            font-size: 1.5rem;
+            padding: 20px;
+        }
+        .details{
+            height: 5vh;
+            width: 10vw;
+            background-color: #ee0202;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            
+            &:hover{
+                background-color:rgb(200, 233, 51);
+            }
+        }
+        .job-listing {
+            font-size: 1.5rem;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .job-listing h2 {
+            margin: 0;
+        }
+        .job-detail {
+            display: none;
+        }
+        .dashboard, .application-form {
+            display: none;
+        }
+        .form-group {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea,.form-group select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="h1">
+    <h1>Job Board</h1></div>
+    <div class="sign">
+        <button class="login">Log In</button>
+        <button class="signup">Sign Up</button>
+    </div>
+</header>
+<nav>
+    <a href="#home" onclick="showPage('home')">Home</a>
+    <a href="#listings" onclick="showPage('listings')">Job Listings</a>
+    <a href="#employer-dashboard" onclick="showPage('employer-dashboard')">Employer Dashboard</a>
+    <a href="#candidate-dashboard" onclick="showPage('candidate-dashboard')">Candidate Dashboard</a>
+</nav>
+<main>
+<div class="container">
+    <div id="home" class="page">
+        <h2>Welcome to the Job Board</h2>
+        <p>Find your next job or post a job opening!</p>
+        <h3>Featured Job Listings</h3>
+        <div class="job-listing">
+            <h2>Software Engineer</h2>
+            <p>Location: Bangalore, Karnataka</p>
+            <button class="details" onclick="showJobDetail(1)">View Details</button>
+        </div>
+        <div class="job-listing">
+            <h2>Data Scientist</h2>
+            <p>Location: Noida, UP</p>
+            <button class="details" onclick="showJobDetail(2)">View Details</button>
+        </div>
+    </div>
+
+    <div id="listings" class="page" style="display:none;">
+        <h2>Job Listings</h2>
+        <div class="job-listing">
+            <h2>Software Engineer</h2>
+            <p>Location: Bangalore, Karnataka</p>
+            <button class="details" onclick="showJobDetail(1)">View Details</button>
+        </div>
+        <div class="job-listing">
+            <h2>Data Scientist</h2>
+            <p>Location: Noida, UP</p>
+            <button class="details" onclick="showJobDetail(2)">View Details</button>
+        </div>
+    </div>
+
+    <div id="job-detail-1" class="job-detail">
+        <h2>Software Engineer</h2>
+        <p>Location: Bangalore, Karnataka</p>
+        <p>Job Description: Develop and maintain software applications.</p>
+        <button class="details" onclick="showApplicationForm()">Apply Now</button>
+    </div>
+    
+    <div id="job-detail-2" class="job-detail">
+        <h2>Data Scientist</h2>
+        <p>Location: Noida, UP</p>
+        <p>Job Description: Analyze and interpret complex data sets.</p>
+        <button class="details" onclick="showApplicationForm()">Apply Now</button>
+    </div>
+
+    <div id="employer-dashboard" class="dashboard">
+        <h2>Employer Dashboard</h2>
+        <div class="form-group">
+            <label for="job-title">Job Title</label>
+            <input type="text" id="job-title">
+        </div>
+        <div class="form-group">
+            <label for="job-location">Job Location</label>
+            <input type="text" id="job-location">
+        </div>
+        <div class="form-group">
+            <label for="job-description">Job Description</label>
+            <textarea id="job-description"></textarea>
+        </div>
+        <button onclick="postJob()">Post Job</button>
+    </div>
+
+    <div id="candidate-dashboard" class="dashboard">
+        <h2>Candidate Dashboard</h2>
+        <div class="form-group">
+            <label for="candidate-name">Name</label>
+            <input type="text" id="candidate-name">
+        </div>
+        <div class="form-group">
+            <label for="candidate-resume">Resume</label>
+            <input type="file" id="candidate-resume">
+        </div>
+        <button class="details" onclick="updateProfile()">Update Profile</button>
+    </div>
+<hr>
+    <div id="application-form" class="application-form">
+        <h2>Job Application</h2>
+        <div class="form-group">
+            <label for="applicant-name">Name</label>
+            <input type="text" id="applicant-name" placeholder="Enter your Name">
+        </div>
+        <div class="form-group">
+            <label for="applicant-mail">Email</label>
+            <input type="email" id="applicant-email" placeholder="Enter your Email">
+        </div>
+        <div class="form-group">
+            <label for="applicant-phone">Contact No.</label>
+            <input type="tel" id="applicant-no" placeholder="Enter your Contact Number">
+        </div>
+        <div class="form-group">
+            <label for="applicant-Qualification">Highest Qualification</label>
+            <select name="Qualification" id="combo">
+                <option value="1">MBA</option>
+                <option value="2">MCA</option>
+                <option value="3">BCA</option>
+                <option value="4">B.Tech</option>
+                <option value="5">BBA</option>
+            </select>
+        </div>
+        <button class="details" onclick="submitApplication()">Submit</button>
+    </div>
+</div>
+</main>
+<footer>
+    <p>&copy; 2024 Job Board. All rights reserved.</p>
+</footer>
+
+<script>
+    function showPage(pageId) {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => {
+            page.style.display = page.id === pageId ? 'block' : 'none';
+        });
+        const details = document.querySelectorAll('.job-detail');
+        details.forEach(detail => detail.style.display = 'none');
+        const dashboards = document.querySelectorAll('.dashboard');
+        dashboards.forEach(dashboard => dashboard.style.display = 'none');
+        const forms = document.querySelectorAll('.application-form');
+        forms.forEach(form => form.style.display = 'none');
+    }
+
+    function showJobDetail(jobId) {
+        showPage('listings');
+        document.getElementById(`job-detail-${jobId}`).style.display = 'block';
+    }
+
+    function showApplicationForm() {
+        document.getElementById('application-form').style.display = 'inline-block';
+    }
+
+    function postJob() {
+        alert('Job posted successfully!');
+    }
+
+    function updateProfile() {
+        alert('Profile updated successfully!');
+    }
+
+    function submitApplication() {
+        alert('Application submitted successfully!');
+    }
+
+    // Initial page load
+    showPage('home');
+</script>
+
+</body>
+</html>
